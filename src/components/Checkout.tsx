@@ -90,6 +90,7 @@ export const Checkout = () => {
       city: '',
       zipCode: '',
       number: '',
+      complement: '',
       cardName: '',
       cardNumber: '',
       cvv: '',
