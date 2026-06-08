@@ -82,6 +82,17 @@ export const Checkout = () => {
   const [orderId, setOrderId] = useState('')
   const dispatch = useDispatch()
   const { isOpen, items } = useSelector((state: RootState) => state.cart)
+  
+  const totalPrice = items.reduce((total, item) => {
+    return total + (item.price * item.quantity)
+  }, 0)
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(value)
+  }
 
   const form = useFormik({
     initialValues: {
@@ -172,6 +183,23 @@ export const Checkout = () => {
       <div className="sidebar">
         {!isCompleted ? (
           <>
+            <h3>Carrinho</h3>
+            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '16px' }}>
+              {items.map((item) => (
+                <li key={item.id} style={{ backgroundColor: 'var(--background)', color: 'var(--primary)', padding: '8px', marginBottom: '8px', borderRadius: '4px', display: 'flex', justifyContent: 'space-between' }}>
+                  <div>
+                    <strong>{item.name}</strong>
+                    <p style={{ fontSize: '12px' }}>{item.quantity}x {formatCurrency(item.price)}</p>
+                  </div>
+                  <strong>{formatCurrency(item.price * item.quantity)}</strong>
+                </li>
+              ))}
+            </ul>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px', fontWeight: 'bold' }}>
+              <span>Total:</span>
+              <span>{formatCurrency(totalPrice)}</span>
+            </div>
+
             <h3>Entrega</h3>
             <form onSubmit={form.handleSubmit}>
               <label htmlFor="receiver">Quem irá receber</label>
