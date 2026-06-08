@@ -42,7 +42,7 @@ export const Header = () => {
     <HeaderBar className="container">
       <a href="/" className="brand">
         <ChefHat />
-        eFood
+        MyFood
       </a>
       <button onClick={() => dispatch(open())}>
         <ShoppingBag size={18} />

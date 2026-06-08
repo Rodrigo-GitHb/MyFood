@@ -184,12 +184,37 @@ export const Checkout = () => {
               <label htmlFor="city">Cidade</label>
               <input id="city" name="city" type="text" onChange={form.handleChange} onBlur={form.handleBlur} value={form.values.city} />
 
+               {form.touched.city && form.errors.city ? <div className="error">{form.errors.city}</div> : null}
+
+               <label htmlFor="zipCode">CEP</label>
+               <input id="zipCode" name="zipCode" type="text" onChange={form.handleChange} onBlur={form.handleBlur} value={form.values.zipCode} />
+               {form.touched.zipCode && form.errors.zipCode ? <div className="error">{form.errors.zipCode}</div> : null}
+
+               <label htmlFor="number">Número</label>
+               <input id="number" name="number" type="text" onChange={form.handleChange} onBlur={form.handleBlur} value={form.values.number} />
+               {form.touched.number && form.errors.number ? <div className="error">{form.errors.number}</div> : null}
+
+               <label htmlFor="complement">Complemento</label>
+               <input id="complement" name="complement" type="text" onChange={form.handleChange} onBlur={form.handleBlur} value={form.values.complement} />
+
               <h3>Pagamento</h3>
               <label htmlFor="cardName">Nome no cartão</label>
               <input id="cardName" name="cardName" type="text" onChange={form.handleChange} onBlur={form.handleBlur} value={form.values.cardName} />
 
               <label htmlFor="cardNumber">Número do cartão</label>
               <input id="cardNumber" name="cardNumber" type="text" onChange={form.handleChange} onBlur={form.handleBlur} value={form.values.cardNumber} />
+
+               {form.touched.cardNumber && form.errors.cardNumber ? <div className="error">{form.errors.cardNumber}</div> : null}
+
+               <label htmlFor="cvv">CVV</label>
+               <input id="cvv" name="cvv" type="text" onChange={form.handleChange} onBlur={form.handleBlur} value={form.values.cvv} />
+               {form.touched.cvv && form.errors.cvv ? <div className="error">{form.errors.cvv}</div> : null}
+
+               <label htmlFor="expiresMonth">Mês de expiração</label>
+               <input id="expiresMonth" name="expiresMonth" type="text" onChange={form.handleChange} onBlur={form.handleBlur} value={form.values.expiresMonth} />
+
+               <label htmlFor="expiresYear">Ano de expiração</label>
+               <input id="expiresYear" name="expiresYear" type="text" onChange={form.handleChange} onBlur={form.handleBlur} value={form.values.expiresYear} />
 
               {error && <div className="error">{error}</div>}
               <button type="submit" disabled={loading}>
