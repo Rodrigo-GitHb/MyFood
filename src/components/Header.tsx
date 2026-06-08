@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { open } from '../store/reducers/cart'
 
-const HeaderBar = styled.header`
+const HeaderWrapper = styled.header`
   background-color: var(--beige);
-  padding: 24px;
+  padding: 40px 0;
+`
+
+const HeaderBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,15 +42,17 @@ export const Header = () => {
   const totalItems = items.reduce((total, item) => total + item.quantity, 0)
 
   return (
-    <HeaderBar className="container">
-      <a href="/" className="brand">
-        <ChefHat />
-        eFood
-      </a>
-      <button onClick={() => dispatch(open())}>
-        <ShoppingBag size={18} />
-        {totalItems} {totalItems === 1 ? 'item' : 'itens'} no carrinho
-      </button>
-    </HeaderBar>
+    <HeaderWrapper>
+      <HeaderBar className="container">
+        <a href="/" className="brand">
+          <ChefHat />
+          eFood
+        </a>
+        <button onClick={() => dispatch(open())}>
+          <ShoppingBag size={18} />
+          {totalItems} {totalItems === 1 ? 'item' : 'itens'} no carrinho
+        </button>
+      </HeaderBar>
+    </HeaderWrapper>
   )
 }
