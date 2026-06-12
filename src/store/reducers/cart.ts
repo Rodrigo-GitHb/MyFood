@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Dish, CartItem } from '../../types'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { CartItem, MenuItem } from '../../types'
 
 type CartState = {
   items: CartItem[]
@@ -15,25 +15,19 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Dish>) => {
-      const item = state.items.find((i) => i.id === action.payload.id)
+    add: (state, action: PayloadAction<MenuItem>) => {
+      const item = state.items.find((cartItem) => cartItem.id === action.payload.id)
+
       if (item) {
-        item.quantity++
+        item.quantity += 1
       } else {
         state.items.push({ ...action.payload, quantity: 1 })
       }
+
+      state.isOpen = true
     },
     remove: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter((i) => i.id !== action.payload)
-    },
-    updateQuantity: (state, action: PayloadAction<{ id: number; amount: number }>) => {
-      const item = state.items.find((i) => i.id === action.payload.id)
-      if (item) {
-        item.quantity = Math.max(0, item.quantity + action.payload.amount)
-        if (item.quantity === 0) {
-          state.items = state.items.filter((i) => i.id !== action.payload.id)
-        }
-      }
+      state.items = state.items.filter((item) => item.id !== action.payload)
     },
     open: (state) => {
       state.isOpen = true
@@ -47,5 +41,5 @@ const cartSlice = createSlice({
   }
 })
 
-export const { add, remove, updateQuantity, open, close, clear } = cartSlice.actions
+export const { add, remove, open, close, clear } = cartSlice.actions
 export default cartSlice.reducer
