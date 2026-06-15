@@ -86,7 +86,7 @@ export const Header = () => {
       {isHome ? (
         <HomeHero className="container">
           <Link to="/" aria-label="Ir para a home">
-            <Logo>efood</Logo>
+            <Logo />
           </Link>
           <h1>Viva experiências gastronômicas no conforto da sua casa</h1>
         </HomeHero>
@@ -96,7 +96,7 @@ export const Header = () => {
             Restaurantes
           </Link>
           <Link to="/" aria-label="Ir para a home">
-            <Logo>efood</Logo>
+            <Logo />
           </Link>
           <button type="button" onClick={() => dispatch(open())}>
             <ShoppingBag size={20} />

@@ -1,10 +1,17 @@
 import styled from 'styled-components'
+import logoImg from '../assets/logo.png'
 
-export const Logo = styled.span`
+const LogoWrapper = styled.div`
   display: inline-block;
-  color: var(--primary);
-  font-size: 36px;
-  font-weight: 900;
-  letter-spacing: 0;
-  line-height: 1;
+  img {
+    height: 44px;
+    width: auto;
+    display: block;
+  }
 `
+
+export const Logo = () => (
+  <LogoWrapper>
+    <img src={logoImg} alt="efood" />
+  </LogoWrapper>
+)

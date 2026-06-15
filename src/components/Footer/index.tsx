@@ -26,7 +26,7 @@ const FooterWrapper = styled.footer`
 export const Footer = () => (
   <FooterWrapper>
     <div className="container">
-      <Logo>efood</Logo>
+      <Logo />
       <div className="social" aria-label="Redes sociais">
         <Instagram size={24} />
         <Facebook size={24} />
